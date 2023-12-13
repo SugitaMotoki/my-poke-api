@@ -1,4 +1,5 @@
 import * as esbuild from "esbuild";
+import vuePlugin from "esbuild-plugin-vue3";
 
 const commonOptions = {
   bundle: true,
@@ -18,6 +19,7 @@ const frontOptions = {
   ...commonOptions,
   entryPoints: ["src/public/main.ts"],
   platform: "browser",
+  plugins: [vuePlugin()],
 };
 
 await esbuild.build(backOptions);
