@@ -1,7 +1,4 @@
-import app from "./app";
+import App from "./app";
 
-const port = 3000;
-
-app.listen(port, () => {
-  console.log(`My-Poke-API REST Server! http://localhost:${port}`);
-});
+const app = App.getInstance();
+app.run();
