@@ -2,9 +2,9 @@
 import { DatabaseService } from "../../database";
 import { CreatePokemonDto } from "./dto/create-pokemon.dto";
 import { Repository } from "typeorm";
-import { Pokemon } from "./pokemon.entity";
-import { Type } from "../types/type.entity";
-import { Generation } from "../generations/generation.entity";
+import { Pokemon } from "./entities/pokemon.entity";
+import { Type } from "../types/entities/type.entity";
+import { Generation } from "../generations/entities/generation.entity";
 
 export class PokemonService {
   private readonly databaseService: DatabaseService;

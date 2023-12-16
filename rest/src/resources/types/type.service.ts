@@ -1,6 +1,6 @@
 import { DatabaseService } from "../../database";
 import { CreateTypeDto } from "./dto/create-type.dto";
-import { Type } from "./type.entity";
+import { Type } from "./entities/type.entity";
 import { Repository } from "typeorm";
 
 export class TypeService {

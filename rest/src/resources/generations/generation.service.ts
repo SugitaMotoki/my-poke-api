@@ -1,6 +1,6 @@
 import { DatabaseService } from "../../database";
 import { CreateGenerationDto } from "./dto/create-generation.dto";
-import { Generation } from "./generation.entity";
+import { Generation } from "./entities/generation.entity";
 import { Repository } from "typeorm";
 
 export class GenerationService {

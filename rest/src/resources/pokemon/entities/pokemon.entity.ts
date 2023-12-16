@@ -6,8 +6,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Type } from "../types/type.entity";
-import { Generation } from "../generations/generation.entity";
+import { Type } from "../../types/entities/type.entity";
+import { Generation } from "../../generations/entities/generation.entity";
 
 @Entity()
 export class Pokemon {

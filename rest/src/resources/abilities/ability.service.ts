@@ -1,6 +1,6 @@
 import { DatabaseService } from "../../database";
 import { CreateAbilityDto } from "./dto/create-ability.dto";
-import { Ability } from "./ability.entity";
+import { Ability } from "./entities/ability.entity";
 import { Repository } from "typeorm";
 
 export class AbilityService {
