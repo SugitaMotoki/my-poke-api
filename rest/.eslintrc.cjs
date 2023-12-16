@@ -9,12 +9,16 @@ module.exports = {
     "sort-imports": "off",
     "no-plusplus": "off",
     "capitalized-comments": "off",
+    "multiline-comment-style": "off",
   },
   overrides: [
     {
       files: ["*.ts"],
       extends: ["plugin:@typescript-eslint/strict", "prettier"],
-      rules: {},
+      rules: {
+        "new-cap": "off",
+        "no-magic-numbers": "off",
+      },
     },
     {
       files: ["*.vue"],
