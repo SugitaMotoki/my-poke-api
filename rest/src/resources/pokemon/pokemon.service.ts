@@ -27,7 +27,7 @@ export class PokemonService {
     return await this.pokemonRepository.save(newPokemon);
   }
 
-  public async findAll(): Promise<Pokemon[]> {
+  public async findAll() {
     return await this.pokemonRepository.find({
       relations: {
         types: true,
@@ -45,7 +45,7 @@ export class PokemonService {
   }
 
   private static createInstance(dto: CreatePokemonDto) {
-    const pokemon: Pokemon = new Pokemon();
+    const pokemon = new Pokemon();
     pokemon.name = dto.name;
     pokemon.pokedex = dto.pokedex;
     pokemon.genus = dto.genus;

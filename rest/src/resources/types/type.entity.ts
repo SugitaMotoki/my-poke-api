@@ -7,12 +7,8 @@ export class Type {
   id?: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @ManyToMany(() => Pokemon, (pokemon) => pokemon.types)
   pokemon?: Pokemon[];
-
-  constructor(name: string) {
-    this.name = name;
-  }
 }

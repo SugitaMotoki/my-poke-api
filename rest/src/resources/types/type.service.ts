@@ -13,11 +13,11 @@ export class TypeService {
   }
 
   public async create(createTypeDto: CreateTypeDto) {
-    const newType: Type = createTypeDto;
+    const newType = TypeService.createInstance(createTypeDto);
     return await this.typeRepository.save(newType);
   }
 
-  public async findAll(): Promise<Type[]> {
+  public async findAll() {
     return await this.typeRepository.find({
       relations: {},
     });
@@ -32,5 +32,11 @@ export class TypeService {
 
   public async remove(id: number) {
     return await this.typeRepository.delete(id);
+  }
+
+  private static createInstance(dto: CreateTypeDto) {
+    const type = new Type();
+    type.name = dto.name;
+    return type;
   }
 }
