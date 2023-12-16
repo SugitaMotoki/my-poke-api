@@ -22,7 +22,7 @@ export class GenerationService {
   public async findAll() {
     return await this.generationRepository.find({
       relations: {
-        pokemons: true,
+        pokemon: true,
       },
     });
   }
@@ -31,7 +31,7 @@ export class GenerationService {
     return await this.generationRepository.findOne({
       where: { id },
       relations: {
-        pokemons: true,
+        pokemon: true,
       },
     });
   }

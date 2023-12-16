@@ -10,5 +10,5 @@ export class Generation {
   name!: string;
 
   @OneToMany(() => Pokemon, (pokemon) => pokemon.generation)
-  pokemons?: Pokemon[];
+  pokemon?: Pokemon[];
 }

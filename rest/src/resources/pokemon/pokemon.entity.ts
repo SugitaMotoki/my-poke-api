@@ -29,12 +29,12 @@ export class Pokemon {
   @Column({ type: "real" })
   weight!: number;
 
-  @ManyToOne(() => Generation, (generation) => generation.pokemons, {
+  @ManyToOne(() => Generation, (generation) => generation.pokemon, {
     nullable: false,
   })
   generation?: Generation;
 
-  @ManyToMany(() => Type, (type) => type.name, {
+  @ManyToMany(() => Type, (type) => type.pokemon, {
     cascade: true,
   })
   @JoinTable()
