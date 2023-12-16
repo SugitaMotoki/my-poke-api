@@ -17,7 +17,7 @@ export class PokemonService {
   }
 
   public async create(createPokemonDto: CreatePokemonDto) {
-    const newPokemon: Pokemon = new Pokemon(createPokemonDto.name);
+    const newPokemon: Pokemon = PokemonService.createInstance(createPokemonDto);
     if (createPokemonDto.typeIds.length !== 0) {
       const types = await this.typeRepository.find({
         where: createPokemonDto.typeIds.map((typeId) => ({ id: typeId })),
@@ -42,5 +42,15 @@ export class PokemonService {
         types: true,
       },
     });
+  }
+
+  private static createInstance(dto: CreatePokemonDto) {
+    const pokemon: Pokemon = new Pokemon();
+    pokemon.name = dto.name;
+    pokemon.pokedex = dto.pokedex;
+    pokemon.genus = dto.genus;
+    pokemon.height = dto.height;
+    pokemon.weight = dto.weight;
+    return pokemon;
   }
 }

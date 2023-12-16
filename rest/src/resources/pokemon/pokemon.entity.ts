@@ -13,15 +13,23 @@ export class Pokemon {
   id?: number;
 
   @Column()
-  name: string;
+  name!: string;
+
+  @Column()
+  pokedex!: number;
+
+  @Column()
+  genus!: string;
+
+  @Column()
+  height!: number;
+
+  @Column()
+  weight!: number;
 
   @ManyToMany(() => Type, (type) => type.name, {
     cascade: true,
   })
   @JoinTable()
   types?: Type[];
-
-  constructor(name: string) {
-    this.name = name;
-  }
 }
