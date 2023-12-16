@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import { DatabaseService } from "./database.service";
 import { Pokemon } from "../resources/pokemon/pokemon.entity";
 import { Type } from "../resources/types/type.entity";
+import { Generation } from "../resources/generations/generation.entity";
 
 export class DatabaseModule {
   private readonly databaseService: DatabaseService;
@@ -16,7 +17,7 @@ export class DatabaseModule {
         username: "poke",
         password: "poke",
         database: "poke",
-        entities: [Pokemon, Type],
+        entities: [Pokemon, Type, Generation],
         synchronize: true,
         logging: false,
       }),
