@@ -2,11 +2,14 @@
 
 import path from "path";
 import express from "express";
+import PromiseRouter from "express-promise-router";
 
-import { appDataSource } from "./data-source";
+import { DatabaseModule } from "./database";
+import { TypeModule } from "./resources/types/type.module";
 
-const app = express();
 const port = 3000;
+const app = express();
+const router = PromiseRouter();
 
 class App {
   private static instance: App;
@@ -22,16 +25,25 @@ class App {
     return App.instance;
   }
 
-  private init = async () => {
-    app.use(express.static(path.resolve(__dirname, "public")));
-    await appDataSource.initialize();
-  };
+  private async init() {
+    const databaseModule = new DatabaseModule();
+    const typeModule = new TypeModule(databaseModule.service);
 
-  public run = () => {
+    await databaseModule.service.init();
+
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.static(path.resolve(__dirname, "public")));
+    app.use(express.json());
+
+    app.use(router);
+    app.use("/types", typeModule.controller.router);
+  }
+
+  public run() {
     app.listen(port, () => {
       console.log(`My-Poke-API REST Server! http://localhost:${port}`);
     });
-  };
+  }
 }
 
 export default App;
