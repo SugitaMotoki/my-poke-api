@@ -21,14 +21,18 @@ export class GenerationService {
 
   public async findAll() {
     return await this.generationRepository.find({
-      relations: {},
+      relations: {
+        pokemons: true,
+      },
     });
   }
 
   public async findOne(id: number) {
     return await this.generationRepository.findOne({
       where: { id },
-      relations: {},
+      relations: {
+        pokemons: true,
+      },
     });
   }
 

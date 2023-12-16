@@ -4,5 +4,6 @@ export interface CreatePokemonDto {
   genus: string;
   height: number;
   weight: number;
+  generationId: number;
   typeIds: number[];
 }

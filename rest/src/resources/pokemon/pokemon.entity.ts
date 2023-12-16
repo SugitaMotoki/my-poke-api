@@ -3,9 +3,11 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Type } from "../types/type.entity";
+import { Generation } from "../generations/generation.entity";
 
 @Entity()
 export class Pokemon {
@@ -21,11 +23,16 @@ export class Pokemon {
   @Column()
   genus!: string;
 
-  @Column()
+  @Column({ type: "real" })
   height!: number;
 
-  @Column()
+  @Column({ type: "real" })
   weight!: number;
+
+  @ManyToOne(() => Generation, (generation) => generation.pokemons, {
+    nullable: false,
+  })
+  generation?: Generation;
 
   @ManyToMany(() => Type, (type) => type.name, {
     cascade: true,
