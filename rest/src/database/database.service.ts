@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import type { DataSource } from "typeorm";
 
 export class DatabaseService {

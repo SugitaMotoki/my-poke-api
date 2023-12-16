@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, class-methods-use-this, max-statements */
+/* eslint-disable no-use-before-define, class-methods-use-this, max-statements, no-console */
 
 import path from "path";
 import express from "express";

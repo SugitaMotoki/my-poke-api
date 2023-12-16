@@ -2,8 +2,8 @@ module.exports = {
   extends: ["eslint:all"],
   rules: {
     "one-var": ["error", { initialized: "never" }],
+    "no-console": "warn",
     "id-length": "off",
-    "no-console": "off",
     "no-ternary": "off",
     "sort-keys": "off",
     "sort-imports": "off",
