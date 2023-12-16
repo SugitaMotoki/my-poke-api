@@ -4,10 +4,12 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Type } from "../../types/entities/type.entity";
 import { Generation } from "../../generations/entities/generation.entity";
+import { PokemonToAbility } from "./pokemon-to-ability.entity";
 
 @Entity()
 export class Pokemon {
@@ -39,4 +41,10 @@ export class Pokemon {
   })
   @JoinTable()
   types?: Type[];
+
+  @OneToMany(
+    () => PokemonToAbility,
+    (pokemonToAbility) => pokemonToAbility.pokemon,
+  )
+  pokemonToAbilities?: PokemonToAbility[];
 }

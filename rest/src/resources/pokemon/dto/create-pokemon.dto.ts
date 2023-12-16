@@ -6,4 +6,8 @@ export interface CreatePokemonDto {
   weight: number;
   generationId: number;
   typeIds: number[];
+  abilities: {
+    id: number;
+    isHidden: boolean;
+  }[];
 }

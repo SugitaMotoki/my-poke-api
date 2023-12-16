@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { PokemonToAbility } from "../../pokemon/entities/pokemon-to-ability.entity";
 
 @Entity()
 export class Ability {
@@ -13,4 +14,10 @@ export class Ability {
 
   @Column()
   description!: string;
+
+  @OneToMany(
+    () => PokemonToAbility,
+    (pokemonToAbility) => pokemonToAbility.ability,
+  )
+  pokemonToAbilities?: PokemonToAbility[];
 }
