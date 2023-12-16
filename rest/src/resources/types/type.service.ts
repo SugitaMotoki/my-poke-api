@@ -5,32 +5,32 @@ import { Repository } from "typeorm";
 
 export class TypeService {
   private readonly databaseService: DatabaseService;
-  private readonly repository: Repository<Type>;
+  private readonly typeRepository: Repository<Type>;
 
   public constructor(databaseService: DatabaseService) {
     this.databaseService = databaseService;
-    this.repository = this.databaseService.dataSource.getRepository(Type);
+    this.typeRepository = this.databaseService.dataSource.getRepository(Type);
   }
 
   public async create(createTypeDto: CreateTypeDto) {
     const newType: Type = createTypeDto;
-    return await this.repository.save(newType);
+    return await this.typeRepository.save(newType);
   }
 
   public async findAll(): Promise<Type[]> {
-    return await this.repository.find({
+    return await this.typeRepository.find({
       relations: {},
     });
   }
 
   public async findOne(id: number) {
-    return await this.repository.findOne({
+    return await this.typeRepository.findOne({
       where: { id },
       relations: {},
     });
   }
 
   public async remove(id: number) {
-    return await this.repository.delete(id);
+    return await this.typeRepository.delete(id);
   }
 }
