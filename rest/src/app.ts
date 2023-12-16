@@ -8,6 +8,7 @@ import { DatabaseModule } from "./database";
 import { PokemonModule } from "./resources/pokemon/pokemon.module";
 import { TypeModule } from "./resources/types/type.module";
 import { GenerationModule } from "./resources/generations/generation.module";
+import { AbilityModule } from "./resources/abilities/ability.module";
 
 const port = 3000;
 const app = express();
@@ -32,6 +33,7 @@ class App {
     const pokemonModule = new PokemonModule(databaseModule.service);
     const typeModule = new TypeModule(databaseModule.service);
     const generationModule = new GenerationModule(databaseModule.service);
+    const abilityModule = new AbilityModule(databaseModule.service);
 
     await databaseModule.service.init();
 
@@ -43,6 +45,7 @@ class App {
     app.use("/pokemon", pokemonModule.controller.router);
     app.use("/types", typeModule.controller.router);
     app.use("/generations", generationModule.controller.router);
+    app.use("/abilities", abilityModule.controller.router);
   }
 
   public run() {

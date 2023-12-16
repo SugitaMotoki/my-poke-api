@@ -35,6 +35,20 @@ const types = [
   { name: "エスパー" },
   { name: "フェアリー" },
 ];
+const abilities = [
+  {
+    name: "せいでんき",
+    flavorText: "さわった　あいてを\nまひさせる　ことがある。",
+    description:
+      "直接攻撃を受けると、30%の確率で相手を『まひ』状態にする。/『でんき』タイプの野生のポケモンと出会いやすくなる。(第8世代まで)",
+  },
+  {
+    name: "ひらいしん",
+    flavorText: "でんきを　よびこんで\nとくこうを　あげる。",
+    description:
+      "『でんき』タイプの技を受けるとダメージが無効化され、自分の『とくこう』ランクが1段階上がる。またダブルバトルの時、自分以外の全てのポケモンの『でんき』タイプの単体攻撃技の攻撃対象が自分になる。(攻撃対象が複数の技の場合はそのまま)/『でんき』タイプの野生のポケモンと出会いやすくなる(第8世代のみ)。",
+  },
+];
 const pokemon = [
   {
     name: "ピカチュウ",
@@ -67,6 +81,7 @@ const req = async (url: string, data: object[]) => {
 const init = async () => {
   await req("/generations", generations);
   await req("/types", types);
+  await req("/abilities", abilities);
   await req("/pokemon", pokemon);
 };
 </script>

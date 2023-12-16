@@ -4,6 +4,7 @@ import { DatabaseService } from "./database.service";
 import { Pokemon } from "../resources/pokemon/pokemon.entity";
 import { Type } from "../resources/types/type.entity";
 import { Generation } from "../resources/generations/generation.entity";
+import { Ability } from "../resources/abilities/ability.entity";
 
 export class DatabaseModule {
   private readonly databaseService: DatabaseService;
@@ -17,7 +18,7 @@ export class DatabaseModule {
         username: "poke",
         password: "poke",
         database: "poke",
-        entities: [Pokemon, Type, Generation],
+        entities: [Pokemon, Type, Generation, Ability],
         synchronize: true,
         logging: false,
       }),
