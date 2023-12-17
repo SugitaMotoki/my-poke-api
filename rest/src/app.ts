@@ -1,12 +1,14 @@
-/* eslint-disable no-use-before-define, class-methods-use-this */
+/* eslint-disable no-use-before-define, class-methods-use-this, max-statements, no-console */
 
 import path from "path";
 import express from "express";
 import PromiseRouter from "express-promise-router";
 
 import { DatabaseModule } from "./database";
-import { TypeModule } from "./resources/types/type.module";
 import { PokemonModule } from "./resources/pokemon/pokemon.module";
+import { TypeModule } from "./resources/types/type.module";
+import { GenerationModule } from "./resources/generations/generation.module";
+import { AbilityModule } from "./resources/abilities/ability.module";
 
 const port = 3000;
 const app = express();
@@ -28,8 +30,10 @@ class App {
 
   private async init() {
     const databaseModule = new DatabaseModule();
-    const typeModule = new TypeModule(databaseModule.service);
     const pokemonModule = new PokemonModule(databaseModule.service);
+    const typeModule = new TypeModule(databaseModule.service);
+    const generationModule = new GenerationModule(databaseModule.service);
+    const abilityModule = new AbilityModule(databaseModule.service);
 
     await databaseModule.service.init();
 
@@ -38,8 +42,10 @@ class App {
     app.use(express.json());
 
     app.use(router);
-    app.use("/types", typeModule.controller.router);
     app.use("/pokemon", pokemonModule.controller.router);
+    app.use("/types", typeModule.controller.router);
+    app.use("/generations", generationModule.controller.router);
+    app.use("/abilities", abilityModule.controller.router);
   }
 
   public run() {

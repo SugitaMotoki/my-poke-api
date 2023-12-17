@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Pokemon } from "../pokemon/pokemon.entity";
+import { Pokemon } from "../../pokemon/entities/pokemon.entity";
 
 @Entity()
 export class Type {
@@ -7,12 +7,8 @@ export class Type {
   id?: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @ManyToMany(() => Pokemon, (pokemon) => pokemon.types)
   pokemon?: Pokemon[];
-
-  constructor(name: string) {
-    this.name = name;
-  }
 }

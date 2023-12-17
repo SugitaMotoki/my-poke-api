@@ -1,6 +1,6 @@
 import { DatabaseService } from "../../database";
 import { CreateTypeDto } from "./dto/create-type.dto";
-import { Type } from "./type.entity";
+import { Type } from "./entities/type.entity";
 import { Repository } from "typeorm";
 
 export class TypeService {
@@ -13,24 +13,34 @@ export class TypeService {
   }
 
   public async create(createTypeDto: CreateTypeDto) {
-    const newType: Type = createTypeDto;
+    const newType = TypeService.createInstance(createTypeDto);
     return await this.typeRepository.save(newType);
   }
 
-  public async findAll(): Promise<Type[]> {
+  public async findAll() {
     return await this.typeRepository.find({
-      relations: {},
+      relations: {
+        pokemon: true,
+      },
     });
   }
 
   public async findOne(id: number) {
     return await this.typeRepository.findOne({
       where: { id },
-      relations: {},
+      relations: {
+        pokemon: true,
+      },
     });
   }
 
   public async remove(id: number) {
     return await this.typeRepository.delete(id);
+  }
+
+  private static createInstance(dto: CreateTypeDto) {
+    const type = new Type();
+    type.name = dto.name;
+    return type;
   }
 }
