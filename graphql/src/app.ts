@@ -8,6 +8,8 @@ import { readFileSync } from "fs";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import { DatabaseModule } from "./database";
+
 const port = 3000;
 
 class App {
@@ -29,6 +31,8 @@ class App {
   }
 
   private async init() {
+    const databaseModule = new DatabaseModule();
+    await databaseModule.service.init();
 
     const typeDefs = readFileSync("./src/schema.graphql", {
       encoding: "utf-8",
