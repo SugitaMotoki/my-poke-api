@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, class-methods-use-this, max-statements, no-console */
+/* eslint-disable no-use-before-define, class-methods-use-this, max-statements, no-console, require-await */
 
 import path from "path";
 import express from "express";
@@ -8,8 +8,10 @@ import { readFileSync } from "fs";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import { TypeModule } from "./resources/types/type.module";
 import { DatabaseModule } from "./database";
 
+export interface MyContext {}
 const port = 3000;
 
 class App {
@@ -32,9 +34,10 @@ class App {
 
   private async init() {
     const databaseModule = new DatabaseModule();
+    const typeModule = new TypeModule(databaseModule.service);
     await databaseModule.service.init();
 
-    const typeDefs = readFileSync("./src/schema.graphql", {
+    const typeDefs = readFileSync("./schema.graphql", {
       encoding: "utf-8",
     });
     const resolvers = {
