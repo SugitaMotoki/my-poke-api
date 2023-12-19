@@ -2,29 +2,50 @@
 
 import path from "path";
 import express from "express";
-import http from "http";
-import cors from "cors";
-import { readFileSync } from "fs";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import { readFileSync } from "fs";
+import http from "http";
+import cors from "cors";
 import { DatabaseModule } from "./database";
-import { PokemonModule } from "./resources/pokemon/pokemon.module";
-import { TypeModule } from "./resources/types/type.module";
-import { GenerationModule } from "./resources/generations/generation.module";
-import { AbilityModule } from "./resources/abilities/ability.module";
+import {
+  PokemonModule,
+  TypeModule,
+  GenerationModule,
+  AbilityModule,
+} from "./resources";
 
 export interface MyContext {}
+
 const port = 3000;
 
 class App {
   private static instance: App;
   private readonly app;
   private readonly httpServer;
+  private readonly databaseModule;
+  private readonly modules;
 
   private constructor() {
     this.app = express();
     this.httpServer = http.createServer(this.app);
+    this.databaseModule = new DatabaseModule();
+    this.modules = [
+      {
+        url: "/pokemon",
+        instance: new PokemonModule(this.databaseModule.service),
+      },
+      { url: "/types", instance: new TypeModule(this.databaseModule.service) },
+      {
+        url: "/generations",
+        instance: new GenerationModule(this.databaseModule.service),
+      },
+      {
+        url: "/abilities",
+        instance: new AbilityModule(this.databaseModule.service),
+      },
+    ];
     this.init();
   }
 
@@ -36,31 +57,12 @@ class App {
   }
 
   private async init() {
-    const databaseModule = new DatabaseModule();
-    const pokemonModule = new PokemonModule(databaseModule.service);
-    const typeModule = new TypeModule(databaseModule.service);
-    const generationModule = new GenerationModule(databaseModule.service);
-    const abilityModule = new AbilityModule(databaseModule.service);
-
-    await databaseModule.service.init();
+    await this.databaseModule.service.init();
 
     const typeDefs = readFileSync("./schema.graphql", {
       encoding: "utf-8",
     });
-    const resolvers = {
-      Query: {
-        ...typeModule.resolver.query,
-        ...generationModule.resolver.query,
-        ...abilityModule.resolver.query,
-        ...pokemonModule.resolver.query,
-      },
-      Mutation: {
-        ...typeModule.resolver.mutation,
-        ...generationModule.resolver.mutation,
-        ...abilityModule.resolver.mutation,
-        ...pokemonModule.resolver.mutation,
-      },
-    };
+    const resolvers = this.mergeResolvers();
     const plugins = [
       ApolloServerPluginDrainHttpServer({ httpServer: this.httpServer }),
     ];
@@ -76,7 +78,33 @@ class App {
       express.json(),
       expressMiddleware(server),
     );
+
+    this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.static(path.resolve(__dirname, "public")));
+    this.app.use(express.json());
+
+    for (const module of this.modules) {
+      this.app.use(module.url, module.instance.controller.router);
+    }
+  }
+
+  private mergeResolvers() {
+    const query = Object.assign(
+      {},
+      ...this.modules.map((module) => module.instance.resolver.query),
+    );
+    const mutation = Object.assign(
+      {},
+      ...this.modules.map((module) => module.instance.resolver.mutation),
+    );
+    return {
+      Query: {
+        ...query,
+      },
+      Mutation: {
+        ...mutation,
+      },
+    };
   }
 
   public async run() {
