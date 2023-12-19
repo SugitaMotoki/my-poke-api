@@ -1,13 +1,65 @@
 type Query {
+  pokemons: [Pokemon!]!
+  pokemon(id: Int!): Pokemon!
   types: [Type!]!
   type(id: Int!): Type!
+  generations: [Generation!]!
+  generation(id: Int!): Generation!
+  abilities: [Ability!]!
+  ability(id: Int!): Ability!
 }
 
 type Mutation {
-  createType(name: String!): Type
+  createPokemon(
+    name: String!,
+    pokedex: Int!,
+    genus: String!,
+    height: Float!,
+    weight: Float!,
+    generationId: Int!
+    typeIds: [Int!]!,
+    abilities: [CreateAbilityProps!]!
+  ): Pokemon!
+  createType(name: String!): Type!
+  createGeneration(name: String!): Generation!
+  createAbility(name: String!, flavorText: String!, description: String!): Ability!
+}
+
+input CreateAbilityProps {
+  id: Int!
+  isHidden: Boolean!
+}
+
+type Pokemon {
+  id: Int!
+  name: String!
+  pokedex: Int!
+  genus: String!
+  height: Float!
+  weight: Float!
+  types: [Type!]!
+  generation: Generation!
+  abilities: [PokemonToAbility!]
+}
+
+type PokemonToAbility {
+  ability: Ability!
+  isHidden: Boolean!
 }
 
 type Type {
   id: Int!
   name: String!
+}
+
+type Generation {
+  id: Int!
+  name: String!
+}
+
+type Ability {
+  id: Int!
+  name: String!
+  flavorText: String!
+  description: String!
 }
