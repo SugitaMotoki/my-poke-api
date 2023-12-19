@@ -9,11 +9,15 @@ import App from "./App.vue";
 import Home from "./pages/Home.vue";
 import Rest from "./pages/Rest.vue";
 import Graphql from "./pages/Graphql.vue";
+import RestPokemonDetail from "./pages/RestPokemonDetail.vue";
+import RestPokemonNew from "./pages/RESTPokemonNew.vue";
 
 const routes = [
-  { path: "/", name: "home", component: Home },
-  { path: "/rest", name: "rest", component: Rest },
-  { path: "/graphql", name: "graphql", component: Graphql },
+  { path: "/", component: Home },
+  { path: "/rest", component: Rest },
+  { path: "/rest/pokemon/:id", component: RestPokemonDetail },
+  { path: "/rest/pokemon/new", component: RestPokemonNew },
+  { path: "/graphql", component: Graphql },
 ];
 
 const router = createRouter({
