@@ -3,6 +3,11 @@
     <h1>{{ pokemon?.name }}</h1>
     <p>{{ pokemon?.genus }}</p>
     <h4>図鑑No.{{ pokemon?.pokedex }}</h4>
+    <v-img
+      width="200"
+      height="200"
+      :src="pokemon?.imageUrl"
+    />
     <p>高さ：{{ pokemon?.height }}</p>
     <p>重さ：{{ pokemon?.weight }}</p>
     <p>{{ pokemon?.generation.name }}</p>

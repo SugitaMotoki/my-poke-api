@@ -74,6 +74,7 @@ export type MutationCreatePokemonArgs = {
   generationId: Scalars["Int"]["input"];
   genus: Scalars["String"]["input"];
   height: Scalars["Float"]["input"];
+  imageUrl: Scalars["String"]["input"];
   name: Scalars["String"]["input"];
   pokedex: Scalars["Int"]["input"];
   typeIds: Array<Scalars["Int"]["input"]>;
@@ -91,6 +92,7 @@ export type Pokemon = {
   genus: Scalars["String"]["output"];
   height: Scalars["Float"]["output"];
   id: Scalars["Int"]["output"];
+  imageUrl: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
   pokedex: Scalars["Int"]["output"];
   types: Array<Type>;
@@ -329,6 +331,7 @@ export type MutationResolvers<
       | "generationId"
       | "genus"
       | "height"
+      | "imageUrl"
       | "name"
       | "pokedex"
       | "typeIds"
@@ -357,6 +360,7 @@ export type PokemonResolvers<
   genus?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   height?: Resolver<ResolversTypes["Float"], ParentType, ContextType>;
   id?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
+  imageUrl?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   pokedex?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   types?: Resolver<Array<ResolversTypes["Type"]>, ParentType, ContextType>;

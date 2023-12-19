@@ -19,6 +19,7 @@ export interface Pokemon {
   id: number;
   name: string;
   pokedex: number;
+  imageUrl: string;
   genus: string;
   height: number;
   weight: number;
@@ -38,6 +39,7 @@ export interface CreateAbilityProps {
 export interface CreatePokemonDto {
   name: string;
   pokedex: number;
+  imageUrl: string;
   genus: string;
   height: number;
   weight: number;

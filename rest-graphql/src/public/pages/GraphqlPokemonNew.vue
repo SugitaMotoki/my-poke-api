@@ -66,6 +66,14 @@
           >
           </v-text-field>
         </v-col>
+        <v-col cols="6">
+          <v-text-field
+            v-model="imageUrl"
+            label="画像リンク"
+            required
+          >
+          </v-text-field>
+        </v-col>
       </v-row>
       <v-row>
         <v-col cols="6">
@@ -113,6 +121,7 @@ import {
 
 const name = ref<string>("");
 const pokedex = ref<number>();
+const imageUrl = ref<string>("");
 const genus = ref<string>("");
 const height = ref<number>(0);
 const weight = ref<number>(0);
@@ -144,6 +153,7 @@ const submit = async () => {
   await postPokemon({
     name: name.value,
     pokedex: pokedex.value!,
+    imageUrl: imageUrl.value,
     genus: genus.value,
     height: height.value,
     weight: weight.value,
