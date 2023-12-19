@@ -1,6 +1,7 @@
 export interface CreatePokemonDto {
   name: string;
   pokedex: number;
+  imageUrl: string;
   genus: string;
   height: number;
   weight: number;

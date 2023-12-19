@@ -23,6 +23,9 @@ export class Pokemon {
   pokedex!: number;
 
   @Column()
+  imageUrl!: string;
+
+  @Column()
   genus!: string;
 
   @Column({ type: "real" })

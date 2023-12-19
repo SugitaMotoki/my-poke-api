@@ -78,6 +78,7 @@ export class PokemonService {
     pokemon.name = dto.name;
     pokemon.pokedex = dto.pokedex;
     pokemon.genus = dto.genus;
+    pokemon.imageUrl = dto.imageUrl;
     pokemon.height = dto.height;
     pokemon.weight = dto.weight;
     pokemon.generation = await this.findGenerationById(dto.generationId);
