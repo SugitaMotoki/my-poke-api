@@ -8,8 +8,11 @@ import { readFileSync } from "fs";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-import { TypeModule } from "./resources/types/type.module";
 import { DatabaseModule } from "./database";
+import { PokemonModule } from "./resources/pokemon/pokemon.module";
+import { TypeModule } from "./resources/types/type.module";
+import { GenerationModule } from "./resources/generations/generation.module";
+import { AbilityModule } from "./resources/abilities/ability.module";
 
 export interface MyContext {}
 const port = 3000;
@@ -34,7 +37,11 @@ class App {
 
   private async init() {
     const databaseModule = new DatabaseModule();
+    const pokemonModule = new PokemonModule(databaseModule.service);
     const typeModule = new TypeModule(databaseModule.service);
+    const generationModule = new GenerationModule(databaseModule.service);
+    const abilityModule = new AbilityModule(databaseModule.service);
+
     await databaseModule.service.init();
 
     const typeDefs = readFileSync("./schema.graphql", {
@@ -43,9 +50,15 @@ class App {
     const resolvers = {
       Query: {
         ...typeModule.resolver.query,
+        ...generationModule.resolver.query,
+        ...abilityModule.resolver.query,
+        ...pokemonModule.resolver.query,
       },
       Mutation: {
         ...typeModule.resolver.mutation,
+        ...generationModule.resolver.mutation,
+        ...abilityModule.resolver.mutation,
+        ...pokemonModule.resolver.mutation,
       },
     };
     const plugins = [

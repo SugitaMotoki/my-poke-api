@@ -19,14 +19,18 @@ export class TypeService {
 
   public async findAll() {
     return await this.typeRepository.find({
-      relations: {},
+      relations: {
+        pokemon: true,
+      },
     });
   }
 
   public async findOne(id: number) {
     return await this.typeRepository.findOne({
       where: { id },
-      relations: {},
+      relations: {
+        pokemon: true,
+      },
     });
   }
 
