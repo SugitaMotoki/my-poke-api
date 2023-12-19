@@ -1,12 +1,9 @@
 <template>
-  <Hello />
-  <Hello />
-  <Hello />
-  <Init />
-  <a href="/graphql">GraphQL</a>
+  <Default>
+    <RouterView />
+  </Default>
 </template>
 
 <script setup lang="ts">
-import Hello from "./components/Hello.vue";
-import Init from "./components/Init.vue";
+import Default from "./layouts/Default.vue";
 </script>

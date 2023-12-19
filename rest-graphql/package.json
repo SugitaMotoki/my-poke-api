@@ -29,7 +29,8 @@
     "graphql": "^16.8.1",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.2.0",
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
