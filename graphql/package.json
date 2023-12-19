@@ -13,6 +13,7 @@
     "format": "prettier -w './**/*.{html,cjs,mjs,ts,vue}'",
     "build": "run-s build:ts copy",
     "build:ts": "node esbuild.mjs",
+    "typegen": "graphql-codegen --config codegen.yml",
     "copy": "cp src/public/index.html dist/public/index.html",
     "start": "node dist/server.js"
   },

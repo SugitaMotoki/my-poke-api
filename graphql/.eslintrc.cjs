@@ -1,5 +1,6 @@
 module.exports = {
   extends: ["eslint:all"],
+  ignorePatterns: ["src/__generated__/**/*.ts"],
   rules: {
     "one-var": ["error", { initialized: "never" }],
     "no-console": "warn",
