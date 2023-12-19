@@ -1,11 +1,8 @@
 <template>
-  <h2>Home</h2>
-  <Hello />
-  <Init />
-  <a href="/graphql">GraphQL</a>
+  <v-container class="text-center">
+    <h1>ポケモンずかん</h1>
+    <h2>システム設計特論</h2>
+  </v-container>
 </template>
 
-<script setup lang="ts">
-import Hello from "../components/Hello.vue";
-import Init from "../components/Init.vue";
-</script>
+<script setup lang="ts"></script>
