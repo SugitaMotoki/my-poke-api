@@ -15,7 +15,7 @@ export class PokemonToAbility {
   })
   pokemon!: Pokemon;
 
-  @ManyToOne(() => Ability, (ability) => ability.pokemonToAbilities, {
+  @ManyToOne(() => Ability, (ability) => ability.pokemons, {
     nullable: false,
   })
   ability!: Ability;

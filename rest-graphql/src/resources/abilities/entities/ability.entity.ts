@@ -19,5 +19,5 @@ export class Ability {
     () => PokemonToAbility,
     (pokemonToAbility) => pokemonToAbility.ability,
   )
-  pokemonToAbilities?: PokemonToAbility[];
+  pokemons?: PokemonToAbility[];
 }

@@ -21,7 +21,7 @@ export class AbilityService {
   public async findAll() {
     return await this.abilityRepository.find({
       relations: {
-        pokemonToAbilities: {
+        pokemons: {
           pokemon: true,
         },
       },
@@ -32,7 +32,7 @@ export class AbilityService {
     return await this.abilityRepository.findOne({
       where: { id },
       relations: {
-        pokemonToAbilities: {
+        pokemons: {
           pokemon: true,
         },
       },
