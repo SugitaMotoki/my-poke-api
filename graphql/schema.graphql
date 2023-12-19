@@ -1,5 +1,6 @@
 type Query {
   types: [Type!]!
+  type(id: Int!): Type!
 }
 
 type Mutation {
