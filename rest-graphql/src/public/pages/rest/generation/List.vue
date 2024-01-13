@@ -1,11 +1,12 @@
 <template>
   <v-container>
-    <h1
-      v-for="generation in generations"
-      :key="generation.id"
-    >
-      {{ generation.name }}
-    </h1>
+    <v-list>
+      <ListItemGeneration
+        v-for="generation in generations"
+        :key="generation.id"
+        :generation="generation"
+      />
+    </v-list>
   </v-container>
 </template>
 
@@ -13,6 +14,7 @@
 import { ref } from "vue";
 import { Generation } from "../../../utils/types";
 import { getGenerations } from "../../../utils/useRest";
+import ListItemGeneration from "../../../components/list-item/ListItemGeneration.vue";
 
 const generations = ref<Generation[]>([]);
 (async () => {
