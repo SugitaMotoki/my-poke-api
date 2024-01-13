@@ -31,6 +31,12 @@ module.exports = {
       rules: {
         "vue/multi-word-component-names": "off",
         "no-magic-numbers": "off",
+        "dot-notation": [
+          "error",
+          {
+            allowPattern: "^id$",
+          },
+        ],
       },
     },
   ],
