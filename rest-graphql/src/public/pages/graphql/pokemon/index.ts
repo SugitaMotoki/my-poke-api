@@ -1,5 +1,6 @@
-import Top from "./Top.vue";
+import Layout from "./Layout.vue";
+import List from "./List.vue";
 import Detail from "./Detail.vue";
 import New from "./New.vue";
 
-export { Top, Detail, New };
+export { Layout, List, Detail, New };

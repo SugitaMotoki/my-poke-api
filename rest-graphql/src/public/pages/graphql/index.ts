@@ -1,3 +1,4 @@
+import Layout from "./Layout.vue";
 import * as pokemon from "./pokemon";
 
-export { pokemon };
+export { Layout, pokemon };
