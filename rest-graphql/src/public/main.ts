@@ -7,21 +7,17 @@ import * as directives from "vuetify/directives";
 
 import App from "./App.vue";
 import Home from "./pages/Home.vue";
-import Rest from "./pages/Rest.vue";
-import RestPokemonDetail from "./pages/RestPokemonDetail.vue";
-import RestPokemonNew from "./pages/RESTPokemonNew.vue";
-import Graphql from "./pages/Graphql.vue";
-import GraphqlPokemonDetail from "./pages/GraphqlPokemonDetail.vue";
-import GraphqlPokemonNew from "./pages/GraphqlPokemonNew.vue";
+import * as rest from "./pages/rest";
+import * as graphql from "./pages/graphql";
 
 const routes = [
   { path: "/", component: Home },
-  { path: "/rest", component: Rest },
-  { path: "/rest/pokemon/:id", component: RestPokemonDetail },
-  { path: "/rest/pokemon/new", component: RestPokemonNew },
-  { path: "/graphql", component: Graphql },
-  { path: "/graphql/pokemon/:id", component: GraphqlPokemonDetail },
-  { path: "/graphql/pokemon/new", component: GraphqlPokemonNew },
+  { path: "/rest", component: rest.pokemon.Top },
+  { path: "/rest/pokemon/:id", component: rest.pokemon.Detail },
+  { path: "/rest/pokemon/new", component: rest.pokemon.New },
+  { path: "/graphql", component: graphql.pokemon.Top },
+  { path: "/graphql/pokemon/:id", component: graphql.pokemon.Detail },
+  { path: "/graphql/pokemon/new", component: graphql.pokemon.New },
 ];
 
 const router = createRouter({

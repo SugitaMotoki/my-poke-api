@@ -47,3 +47,5 @@ export interface CreatePokemonDto {
   typeIds: number[];
   abilities: CreateAbilityProps[];
 }
+
+export type BackendType = "rest" | "graphql";

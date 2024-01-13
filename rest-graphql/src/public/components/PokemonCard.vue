@@ -5,7 +5,7 @@
     :title="pokemon.name"
     :subtitle="`No.${pokemon.pokedex}`"
     width="180"
-    :to="`/rest/pokemon/${pokemon.id}`"
+    :to="`/${backendType}/pokemon/${pokemon.id}`"
   >
     <div class="d-flex justify-center">
       <v-img
@@ -18,9 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import { Pokemon } from "../../utils/types";
+import { BackendType, Pokemon } from "../utils/types";
 interface Props {
+  backendType: BackendType;
   pokemon: Pokemon;
 }
-const { pokemon } = defineProps<Props>();
+const { backendType, pokemon } = defineProps<Props>();
 </script>
