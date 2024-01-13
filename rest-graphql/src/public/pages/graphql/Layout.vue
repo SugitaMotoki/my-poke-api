@@ -5,13 +5,13 @@
         <v-btn to="/graphql/pokemon">ポケモン</v-btn>
       </v-col>
       <v-col cols="auto">
-        <v-btn to="/graphql/ability">特性</v-btn>
+        <v-btn to="/graphql/abilities">特性</v-btn>
       </v-col>
       <v-col cols="auto">
-        <v-btn to="/graphql/generation">世代</v-btn>
+        <v-btn to="/graphql/generations">世代</v-btn>
       </v-col>
       <v-col cols="auto">
-        <v-btn to="/graphql/type">タイプ</v-btn>
+        <v-btn to="/graphql/types">タイプ</v-btn>
       </v-col>
     </v-row>
   </v-container>

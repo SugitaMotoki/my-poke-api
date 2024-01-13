@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>ポケモン</h1>
+    <h1>タイプ</h1>
     <RouterView />
   </v-container>
 </template>

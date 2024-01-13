@@ -25,6 +25,21 @@ const routes = [
           { path: "new", component: rest.pokemon.New },
         ],
       },
+      {
+        path: "abilities",
+        component: rest.ability.Layout,
+        children: [{ path: "", component: rest.ability.List }],
+      },
+      {
+        path: "generations",
+        component: rest.generation.Layout,
+        children: [{ path: "", component: rest.generation.List }],
+      },
+      {
+        path: "types",
+        component: rest.type.Layout,
+        children: [{ path: "", component: rest.type.List }],
+      },
     ],
   },
   {
