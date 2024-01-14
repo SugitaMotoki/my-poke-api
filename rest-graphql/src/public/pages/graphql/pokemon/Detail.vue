@@ -32,7 +32,7 @@
 import { useRoute } from "vue-router";
 import { ref } from "vue";
 import { Pokemon } from "../../../utils/types";
-import { getPokemonById } from "../../../utils/useRest";
+import { getPokemonById } from "../../../utils/useGraphql";
 
 const route = useRoute();
 const id = Number(route.params["id"]);

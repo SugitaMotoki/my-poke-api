@@ -32,13 +32,15 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Type } from "../../utils/types";
-import { putType, deleteType } from "../../utils/useRest";
+import { Type, BackendType } from "../../utils/types";
+import * as useRest from "../../utils/useRest";
+import * as useGraphql from "../../utils/useGraphql";
 
 interface Props {
   type: Type;
+  backendType: BackendType;
 }
-const { type } = defineProps<Props>();
+const { type, backendType } = defineProps<Props>();
 const emit = defineEmits(["changeData"]);
 
 const name = ref<string>(type.name);
@@ -46,16 +48,26 @@ const editMode = ref<boolean>(false);
 
 const onClickEditButton = async () => {
   if (editMode.value) {
-    await putType(type.id, {
-      name: name.value,
-    });
+    if (backendType === "rest") {
+      await useRest.putType(type.id, {
+        name: name.value,
+      });
+    } else {
+      await useGraphql.putType(type.id, {
+        name: name.value,
+      });
+    }
     emit("changeData");
   }
   editMode.value = !editMode.value;
 };
 
 const onClickDeleteButton = async () => {
-  await deleteType(type.id);
+  if (backendType === "rest") {
+    await useRest.deleteType(type.id);
+  } else {
+    await useGraphql.deleteType(type.id);
+  }
   emit("changeData");
 };
 </script>

@@ -20,7 +20,7 @@ export class PokemonResolver {
         _: gql.ResolversParentTypes["Mutation"],
         args: gql.MutationCreatePokemonArgs,
       ) => await this.pokemonService.create(args),
-      deleteAbility: async (
+      deletePokemon: async (
         _: gql.ResolversParentTypes["Mutation"],
         args: gql.MutationDeletePokemonArgs,
       ) => {

@@ -31,6 +31,7 @@
         v-for="ability in abilities"
         :key="ability.id"
         :ability="ability"
+        backend-type="graphql"
         @change-data="getData"
       />
     </v-list>
@@ -40,7 +41,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Ability } from "../../../utils/types";
-import { getAbilities, postAbility } from "../../../utils/useRest";
+import { getAbilities, postAbility } from "../../../utils/useGraphql";
 import ListItemAbility from "../../../components/list-item/ListItemAbility.vue";
 
 const abilities = ref<Ability[]>([]);

@@ -76,6 +76,10 @@ class App {
       "/graphql",
       cors<cors.CorsRequest>(),
       express.json(),
+      (req, _res, next) => {
+        console.log(req.body);
+        next();
+      },
       expressMiddleware(server),
     );
 

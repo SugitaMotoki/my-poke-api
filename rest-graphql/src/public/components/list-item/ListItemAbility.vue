@@ -44,13 +44,15 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Ability } from "../../utils/types";
-import { putAbility, deleteAbility } from "../../utils/useRest";
+import { Ability, BackendType } from "../../utils/types";
+import * as useRest from "../../utils/useRest";
+import * as useGraphql from "../../utils/useGraphql";
 
 interface Props {
   ability: Ability;
+  backendType: BackendType;
 }
-const { ability } = defineProps<Props>();
+const { ability, backendType } = defineProps<Props>();
 const emit = defineEmits(["changeData"]);
 
 const name = ref<string>(ability.name);
@@ -60,18 +62,30 @@ const editMode = ref<boolean>(false);
 
 const onClickEditButton = async () => {
   if (editMode.value) {
-    await putAbility(ability.id, {
-      name: name.value,
-      flavorText: flavorText.value,
-      description: description.value,
-    });
+    if (backendType === "rest") {
+      await useRest.putAbility(ability.id, {
+        name: name.value,
+        flavorText: flavorText.value,
+        description: description.value,
+      });
+    } else {
+      await useGraphql.putAbility(ability.id, {
+        name: name.value,
+        flavorText: flavorText.value,
+        description: description.value,
+      });
+    }
     emit("changeData");
   }
   editMode.value = !editMode.value;
 };
 
 const onClickDeleteButton = async () => {
-  await deleteAbility(ability.id);
+  if (backendType === "rest") {
+    await useRest.deleteAbility(ability.id);
+  } else {
+    await useGraphql.deleteAbility(ability.id);
+  }
   emit("changeData");
 };
 </script>

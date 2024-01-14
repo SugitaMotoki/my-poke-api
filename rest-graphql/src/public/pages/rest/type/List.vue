@@ -21,6 +21,7 @@
         v-for="_type in types"
         :key="_type.id"
         :type="_type"
+        backend-type="rest"
         @change-data="getData"
       />
     </v-list>

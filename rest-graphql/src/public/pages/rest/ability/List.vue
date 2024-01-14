@@ -31,6 +31,7 @@
         v-for="ability in abilities"
         :key="ability.id"
         :ability="ability"
+        backend-type="rest"
         @change-data="getData"
       />
     </v-list>

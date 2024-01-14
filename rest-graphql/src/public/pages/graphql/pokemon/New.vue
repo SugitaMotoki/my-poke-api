@@ -117,7 +117,7 @@ import {
   getTypes,
   getAbilities,
   postPokemon,
-} from "../../../utils/useRest";
+} from "../../../utils/useGraphql";
 
 const name = ref<string>("");
 const pokedex = ref<number>();

@@ -21,6 +21,7 @@
         v-for="generation in generations"
         :key="generation.id"
         :generation="generation"
+        backend-type="rest"
         @change-data="getData"
       />
     </v-list>

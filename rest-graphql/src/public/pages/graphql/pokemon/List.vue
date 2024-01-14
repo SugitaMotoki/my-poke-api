@@ -19,9 +19,9 @@ import PokemonCard from "../../../components/PokemonCard.vue";
 import CreateNewPokemonButton from "../../../components/CreateNewPokemonButton.vue";
 import { ref } from "vue";
 import { Pokemon } from "../../../utils/types";
-import { getPokemon } from "../../../utils/useRest";
+import { getPokemon } from "../../../utils/useGraphql";
 
-const backendType = "rest";
+const backendType = "graphql";
 
 const pokemon = ref<Pokemon[]>([]);
 (async () => {

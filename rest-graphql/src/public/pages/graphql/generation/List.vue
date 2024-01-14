@@ -21,6 +21,7 @@
         v-for="generation in generations"
         :key="generation.id"
         :generation="generation"
+        backend-type="graphql"
         @change-data="getData"
       />
     </v-list>
@@ -30,7 +31,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Generation } from "../../../utils/types";
-import { getGenerations, postGeneration } from "../../../utils/useRest";
+import { getGenerations, postGeneration } from "../../../utils/useGraphql";
 import ListItemGeneration from "../../../components/list-item/ListItemGeneration.vue";
 
 const generations = ref<Generation[]>([]);

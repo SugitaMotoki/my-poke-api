@@ -21,6 +21,7 @@
         v-for="_type in types"
         :key="_type.id"
         :type="_type"
+        backend-type="graphql"
         @change-data="getData"
       />
     </v-list>
@@ -30,7 +31,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Type } from "../../../utils/types";
-import { getTypes, postType } from "../../../utils/useRest";
+import { getTypes, postType } from "../../../utils/useGraphql";
 import ListItemType from "../../../components/list-item/ListItemType.vue";
 
 const types = ref<Type[]>([]);
