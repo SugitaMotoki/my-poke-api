@@ -57,6 +57,7 @@ export class PokemonService {
           ability: true,
         },
       },
+      order: { pokedex: "asc" },
     });
   }
 
@@ -71,6 +72,10 @@ export class PokemonService {
         },
       },
     });
+  }
+
+  public async remove(id: number) {
+    return await this.pokemonRepository.delete(id);
   }
 
   private async createInstance(dto: CreatePokemonDto) {

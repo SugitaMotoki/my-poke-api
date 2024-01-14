@@ -1,5 +1,6 @@
 import { DatabaseService } from "../../database";
 import { CreateAbilityDto } from "./dto/create-ability.dto";
+import { UpdateAbilityDto } from "./dto/update-ability.dto";
 import { Ability } from "./entities/ability.entity";
 import { Repository } from "typeorm";
 
@@ -25,6 +26,7 @@ export class AbilityService {
           pokemon: true,
         },
       },
+      order: { id: "asc" },
     });
   }
 
@@ -37,6 +39,10 @@ export class AbilityService {
         },
       },
     });
+  }
+
+  public async update(id: number, updateTypeDto: UpdateAbilityDto) {
+    return await this.abilityRepository.update(id, updateTypeDto);
   }
 
   public async remove(id: number) {

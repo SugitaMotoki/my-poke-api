@@ -1,6 +1,7 @@
 import PromiseRouter from "express-promise-router";
 import { AbilityService } from "./ability.service";
 import { CreateAbilityDto } from "./dto/create-ability.dto";
+import { UpdateAbilityDto } from "./dto/update-ability.dto";
 
 export class AbilityController {
   public readonly router;
@@ -31,6 +32,24 @@ export class AbilityController {
       const createAbilityDto: CreateAbilityDto = req.body;
       const ability = await this.abilityService.create(createAbilityDto);
       res.status(201).json(ability);
+    });
+
+    this.router.put("/:id", async (req, res) => {
+      const id = Number(req.params.id);
+      const updateAbilityDto: UpdateAbilityDto = req.body;
+      const updateResult = await this.abilityService.update(
+        id,
+        updateAbilityDto,
+      );
+      res.status(200).json(updateResult);
+    });
+
+    this.router.delete("/:id", async (req, res) => {
+      const id = Number(req.params.id);
+      await this.abilityService.remove(id);
+      res.status(200).json({
+        message: "completed",
+      });
     });
   }
 }

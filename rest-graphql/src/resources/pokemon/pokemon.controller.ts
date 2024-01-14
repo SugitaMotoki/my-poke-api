@@ -32,5 +32,13 @@ export class PokemonController {
       const pokemon = await this.pokemonService.create(createPokemonDto);
       res.status(201).json(pokemon);
     });
+
+    this.router.delete("/:id", async (req, res) => {
+      const id = Number(req.params.id);
+      await this.pokemonService.remove(id);
+      res.status(200).json({
+        message: "completed",
+      });
+    });
   }
 }
