@@ -47,7 +47,7 @@ const editMode = ref<boolean>(false);
 const onClickEditButton = async () => {
   if (editMode.value) {
     await putGeneration(generation.id, {
-      name: generation.name,
+      name: name.value,
     });
     emit("changeData");
   }
