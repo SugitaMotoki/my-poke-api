@@ -57,6 +57,13 @@ export type Mutation = {
   createGeneration: Generation;
   createPokemon: Pokemon;
   createType: Type;
+  deleteAbility: Scalars["String"]["output"];
+  deleteGeneration: Scalars["String"]["output"];
+  deletePokemon: Scalars["String"]["output"];
+  deleteType: Scalars["String"]["output"];
+  updateAbility: Scalars["String"]["output"];
+  updateGeneration: Scalars["String"]["output"];
+  updateType: Scalars["String"]["output"];
 };
 
 export type MutationCreateAbilityArgs = {
@@ -82,6 +89,39 @@ export type MutationCreatePokemonArgs = {
 };
 
 export type MutationCreateTypeArgs = {
+  name: Scalars["String"]["input"];
+};
+
+export type MutationDeleteAbilityArgs = {
+  id: Scalars["Int"]["input"];
+};
+
+export type MutationDeleteGenerationArgs = {
+  id: Scalars["Int"]["input"];
+};
+
+export type MutationDeletePokemonArgs = {
+  id: Scalars["Int"]["input"];
+};
+
+export type MutationDeleteTypeArgs = {
+  id: Scalars["Int"]["input"];
+};
+
+export type MutationUpdateAbilityArgs = {
+  description: Scalars["String"]["input"];
+  flavorText: Scalars["String"]["input"];
+  id: Scalars["Int"]["input"];
+  name: Scalars["String"]["input"];
+};
+
+export type MutationUpdateGenerationArgs = {
+  id: Scalars["Int"]["input"];
+  name: Scalars["String"]["input"];
+};
+
+export type MutationUpdateTypeArgs = {
+  id: Scalars["Int"]["input"];
   name: Scalars["String"]["input"];
 };
 
@@ -343,6 +383,51 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationCreateTypeArgs, "name">
+  >;
+  deleteAbility?: Resolver<
+    ResolversTypes["String"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationDeleteAbilityArgs, "id">
+  >;
+  deleteGeneration?: Resolver<
+    ResolversTypes["String"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationDeleteGenerationArgs, "id">
+  >;
+  deletePokemon?: Resolver<
+    ResolversTypes["String"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationDeletePokemonArgs, "id">
+  >;
+  deleteType?: Resolver<
+    ResolversTypes["String"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationDeleteTypeArgs, "id">
+  >;
+  updateAbility?: Resolver<
+    ResolversTypes["String"],
+    ParentType,
+    ContextType,
+    RequireFields<
+      MutationUpdateAbilityArgs,
+      "description" | "flavorText" | "id" | "name"
+    >
+  >;
+  updateGeneration?: Resolver<
+    ResolversTypes["String"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationUpdateGenerationArgs, "id" | "name">
+  >;
+  updateType?: Resolver<
+    ResolversTypes["String"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationUpdateTypeArgs, "id" | "name">
   >;
 }>;
 

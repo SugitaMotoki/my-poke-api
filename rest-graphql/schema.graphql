@@ -21,9 +21,21 @@ type Mutation {
     typeIds: [Int!]!,
     abilities: [CreateAbilityProps!]!
   ): Pokemon!
+  deletePokemon(id: Int!): String!
   createType(name: String!): Type!
+  updateType(id: Int!, name: String!): String!
+  deleteType(id: Int!): String!
   createGeneration(name: String!): Generation!
+  updateGeneration(id: Int!, name: String!): String!
+  deleteGeneration(id: Int!): String!
   createAbility(name: String!, flavorText: String!, description: String!): Ability!
+  updateAbility(
+    id: Int!,
+    name: String!,
+    flavorText: String!,
+    description: String!,
+  ): String!
+  deleteAbility(id: Int!): String!
 }
 
 input CreateAbilityProps {
