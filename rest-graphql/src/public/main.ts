@@ -55,6 +55,21 @@ const routes = [
           { path: "new", component: graphql.pokemon.New },
         ],
       },
+      {
+        path: "abilities",
+        component: graphql.ability.Layout,
+        children: [{ path: "", component: graphql.ability.List }],
+      },
+      {
+        path: "generations",
+        component: graphql.generation.Layout,
+        children: [{ path: "", component: graphql.generation.List }],
+      },
+      {
+        path: "types",
+        component: graphql.type.Layout,
+        children: [{ path: "", component: graphql.type.List }],
+      },
     ],
   },
 ];
