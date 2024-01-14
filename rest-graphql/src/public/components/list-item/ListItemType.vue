@@ -9,7 +9,7 @@
         />
       </div>
       <div v-else>
-        {{ name }}
+        <h3>{{ name }}</h3>
       </div>
     </v-list-item-title>
     <template #append>
@@ -20,10 +20,11 @@
         @click="onClickEditButton"
       />
       <v-btn
+        v-if="!editMode"
         color="grey-lighten-1"
         icon="$delete"
         variant="text"
-        to="/"
+        @click="onClickDeleteButton"
       />
     </template>
   </v-list-item>
@@ -32,20 +33,29 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Type } from "../../utils/types";
+import { putType, deleteType } from "../../utils/useRest";
 
 interface Props {
   type: Type;
 }
 const { type } = defineProps<Props>();
+const emit = defineEmits(["changeData"]);
 
 const name = ref<string>(type.name);
 const editMode = ref<boolean>(false);
 
-const onClickEditButton = () => {
+const onClickEditButton = async () => {
   if (editMode.value) {
-    editMode.value = false;
-  } else {
-    editMode.value = true;
+    await putType(type.id, {
+      name: name.value,
+    });
+    emit("changeData");
   }
+  editMode.value = !editMode.value;
+};
+
+const onClickDeleteButton = async () => {
+  await deleteType(type.id);
+  emit("changeData");
 };
 </script>

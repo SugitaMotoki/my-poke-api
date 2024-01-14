@@ -5,6 +5,7 @@
         v-for="generation in generations"
         :key="generation.id"
         :generation="generation"
+        @change-data="getData"
       />
     </v-list>
   </v-container>
@@ -17,7 +18,8 @@ import { getGenerations } from "../../../utils/useRest";
 import ListItemGeneration from "../../../components/list-item/ListItemGeneration.vue";
 
 const generations = ref<Generation[]>([]);
-(async () => {
+const getData = async () => {
   generations.value = await getGenerations();
-})();
+};
+getData();
 </script>

@@ -5,6 +5,7 @@
         v-for="_type in types"
         :key="_type.id"
         :type="_type"
+        @change-data="getData"
       />
     </v-list>
   </v-container>
@@ -17,7 +18,8 @@ import { getTypes } from "../../../utils/useRest";
 import ListItemType from "../../../components/list-item/ListItemType.vue";
 
 const types = ref<Type[]>([]);
-(async () => {
+const getData = async () => {
   types.value = await getTypes();
-})();
+};
+getData();
 </script>

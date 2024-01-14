@@ -4,3 +4,15 @@ export interface Ability {
   flavorText: string;
   description: string;
 }
+
+export interface CreateAbilityDto {
+  name: string;
+  flavorText: string;
+  description: string;
+}
+
+export interface UpdateAbilityDto {
+  name: string;
+  flavorText: string;
+  description: string;
+}

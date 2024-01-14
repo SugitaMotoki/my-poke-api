@@ -9,7 +9,7 @@
         />
       </div>
       <div v-else>
-        {{ name }}
+        <h3>{{ name }}</h3>
       </div>
     </v-list-item-title>
     <template #append>
@@ -20,10 +20,11 @@
         @click="onClickEditButton"
       />
       <v-btn
+        v-if="!editMode"
         color="grey-lighten-1"
         icon="$delete"
         variant="text"
-        to="/"
+        @click="onClickDeleteButton"
       />
     </template>
   </v-list-item>
@@ -32,20 +33,29 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Generation } from "../../utils/types";
+import { putGeneration, deleteGeneration } from "../../utils/useRest";
 
 interface Props {
   generation: Generation;
 }
 const { generation } = defineProps<Props>();
+const emit = defineEmits(["changeData"]);
 
 const name = ref<string>(generation.name);
 const editMode = ref<boolean>(false);
 
-const onClickEditButton = () => {
+const onClickEditButton = async () => {
   if (editMode.value) {
-    editMode.value = false;
-  } else {
-    editMode.value = true;
+    await putGeneration(generation.id, {
+      name: generation.name,
+    });
+    emit("changeData");
   }
+  editMode.value = !editMode.value;
+};
+
+const onClickDeleteButton = async () => {
+  await deleteGeneration(generation.id);
+  emit("changeData");
 };
 </script>

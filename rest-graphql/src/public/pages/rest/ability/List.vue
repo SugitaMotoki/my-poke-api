@@ -5,6 +5,7 @@
         v-for="ability in abilities"
         :key="ability.id"
         :ability="ability"
+        @change-data="getData"
       />
     </v-list>
   </v-container>
@@ -17,7 +18,8 @@ import { getAbilities } from "../../../utils/useRest";
 import ListItemAbility from "../../../components/list-item/ListItemAbility.vue";
 
 const abilities = ref<Ability[]>([]);
-(async () => {
+const getData = async () => {
   abilities.value = await getAbilities();
-})();
+};
+getData();
 </script>
