@@ -1,5 +1,10 @@
 <template>
-  <button @click="init">初期化</button>
+  <v-btn
+    size="large"
+    color="primary"
+    @click="init"
+    >サンプルデータ追加</v-btn
+  >
 </template>
 
 <script setup lang="ts">
