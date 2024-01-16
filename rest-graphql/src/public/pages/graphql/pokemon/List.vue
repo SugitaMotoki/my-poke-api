@@ -1,17 +1,13 @@
 <template>
   <v-container>
     <v-row class="pa-2">
-      <v-btn
-        size="large"
-        color="primary"
-        to="/rest/pokemon/new"
-        >新規登録</v-btn
-      >
+      <CreateNewPokemonButton :backend-type="backendType" />
     </v-row>
     <v-row class="pa-2">
       <PokemonCard
         v-for="p in pokemon"
         :key="p.pokedex"
+        :backend-type="backendType"
         :pokemon="p"
       />
     </v-row>
@@ -19,10 +15,13 @@
 </template>
 
 <script setup lang="ts">
-import PokemonCard from "../components/rest/PokemonCard.vue";
+import PokemonCard from "../../../components/PokemonCard.vue";
+import CreateNewPokemonButton from "../../../components/CreateNewPokemonButton.vue";
 import { ref } from "vue";
-import { Pokemon } from "../utils/types";
-import { getPokemon } from "../utils/useRest";
+import { Pokemon } from "../../../utils/types";
+import { getPokemon } from "../../../utils/useGraphql";
+
+const backendType = "graphql";
 
 const pokemon = ref<Pokemon[]>([]);
 (async () => {

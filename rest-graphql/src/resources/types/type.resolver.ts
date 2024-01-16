@@ -17,9 +17,23 @@ export class TypeResolver {
     };
     this.typeMutation = {
       createType: async (
-        _parent: gql.ResolversParentTypes,
+        _: gql.ResolversParentTypes["Mutation"],
         args: gql.MutationCreateTypeArgs,
-      ) => await typeService.create(args),
+      ) => await this.typeService.create(args),
+      updateType: async (
+        _: gql.ResolversParentTypes["Mutation"],
+        args: gql.MutationUpdateTypeArgs,
+      ) => {
+        await this.typeService.update(args.id, { name: args.name });
+        return "completed";
+      },
+      deleteType: async (
+        _: gql.ResolversParentTypes["Mutation"],
+        args: gql.MutationDeleteTypeArgs,
+      ) => {
+        await this.typeService.remove(args.id);
+        return "completed";
+      },
     };
   }
 

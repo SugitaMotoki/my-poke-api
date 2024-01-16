@@ -1,5 +1,6 @@
 import { DatabaseService } from "../../database";
 import { CreateGenerationDto } from "./dto/create-generation.dto";
+import { UpdateGenerationDto } from "./dto/update-generation.dto";
 import { Generation } from "./entities/generation.entity";
 import { Repository } from "typeorm";
 
@@ -24,6 +25,7 @@ export class GenerationService {
       relations: {
         pokemon: true,
       },
+      order: { id: "asc" },
     });
   }
 
@@ -34,6 +36,14 @@ export class GenerationService {
         pokemon: true,
       },
     });
+  }
+
+  public async update(id: number, updateGenerationDto: UpdateGenerationDto) {
+    return await this.generationRepository.update(id, updateGenerationDto);
+  }
+
+  public async remove(id: number) {
+    return await this.generationRepository.delete(id);
   }
 
   private static createInstance(dto: CreateGenerationDto) {

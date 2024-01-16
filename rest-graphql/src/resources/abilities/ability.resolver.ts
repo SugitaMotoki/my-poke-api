@@ -17,9 +17,27 @@ export class AbilityResolver {
     };
     this.abilityMutation = {
       createAbility: async (
-        _parent: gql.ResolversParentTypes,
+        _: gql.ResolversParentTypes["Mutation"],
         args: gql.MutationCreateAbilityArgs,
       ) => await this.abilityService.create(args),
+      updateAbility: async (
+        _: gql.ResolversParentTypes["Mutation"],
+        args: gql.MutationUpdateAbilityArgs,
+      ) => {
+        await this.abilityService.update(args.id, {
+          name: args.name,
+          flavorText: args.flavorText,
+          description: args.description,
+        });
+        return "completed";
+      },
+      deleteAbility: async (
+        _: gql.ResolversParentTypes["Mutation"],
+        args: gql.MutationDeleteAbilityArgs,
+      ) => {
+        await this.abilityService.remove(args.id);
+        return "completed";
+      },
     };
   }
 

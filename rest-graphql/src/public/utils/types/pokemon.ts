@@ -1,19 +1,6 @@
-export interface Type {
-  id: number;
-  name: string;
-}
-
-export interface Generation {
-  id: number;
-  name: string;
-}
-
-export interface Ability {
-  id: number;
-  name: string;
-  flavorText: string;
-  description: string;
-}
+import { Ability } from "./ability";
+import { Generation } from "./generation";
+import { Type } from "./type";
 
 export interface Pokemon {
   id: number;

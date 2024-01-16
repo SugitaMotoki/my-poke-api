@@ -17,9 +17,23 @@ export class GenerationResolver {
     };
     this.generationMutation = {
       createGeneration: async (
-        _parent: gql.ResolversParentTypes,
+        _: gql.ResolversParentTypes["Mutation"],
         args: gql.MutationCreateGenerationArgs,
       ) => await this.generationService.create(args),
+      updateGeneration: async (
+        _: gql.ResolversParentTypes["Mutation"],
+        args: gql.MutationUpdateGenerationArgs,
+      ) => {
+        await this.generationService.update(args.id, { name: args.name });
+        return "completed";
+      },
+      deleteGeneration: async (
+        _: gql.ResolversParentTypes["Mutation"],
+        args: gql.MutationDeleteGenerationArgs,
+      ) => {
+        await this.generationService.remove(args.id);
+        return "completed";
+      },
     };
   }
 

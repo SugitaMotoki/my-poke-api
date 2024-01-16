@@ -101,9 +101,9 @@
         </v-col>
       </v-row>
       <v-btn
-        @click="submit"
+        @click="createNewPokemon"
         color="primary"
-        >送信</v-btn
+        >ポケモンを追加</v-btn
       >
     </v-container>
   </v-form>
@@ -111,13 +111,13 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Generation, Type, Ability } from "../utils/types";
+import { Generation, Type, Ability } from "../../../utils/types";
 import {
   getGenerations,
   getTypes,
   getAbilities,
   postPokemon,
-} from "../utils/useRest";
+} from "../../../utils/useGraphql";
 
 const name = ref<string>("");
 const pokedex = ref<number>();
@@ -143,7 +143,7 @@ const abilities = ref<Ability[]>();
   abilities.value = await getAbilities();
 })();
 
-const submit = async () => {
+const createNewPokemon = async () => {
   const abilityProps = [
     ...abilityIds.value.map((id) => ({ id, isHidden: false })),
   ];
