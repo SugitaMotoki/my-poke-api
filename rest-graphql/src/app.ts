@@ -115,7 +115,7 @@ class App {
     await new Promise<void>((resolve) => {
       this.httpServer.listen({ port }, resolve);
     });
-    console.log(`🚀 My-Poke-API GraphQL server at http://localhost:${port}/`);
+    console.log(`🚀 My-Poke-API server at http://localhost:${port}/`);
   }
 }
 
